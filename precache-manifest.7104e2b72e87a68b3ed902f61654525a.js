@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f10442a3508f66e20904d3433046afab",
+    "revision": "f66f1cf1feea17e6c2d42779deb47227",
     "url": "/pomodoro-clock/index.html"
   },
   {
-    "revision": "e473e5cc0f01e10adb01",
-    "url": "/pomodoro-clock/static/css/main.bf377a05.chunk.css"
+    "revision": "d6f4f8aaf293d4c733ce",
+    "url": "/pomodoro-clock/static/css/main.5d203df0.chunk.css"
   },
   {
     "revision": "2a1c8d12bdf4990a6b64",
@@ -16,11 +16,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pomodoro-clock/static/js/2.488f0cd1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e473e5cc0f01e10adb01",
-    "url": "/pomodoro-clock/static/js/main.83ef6eb9.chunk.js"
+    "revision": "d6f4f8aaf293d4c733ce",
+    "url": "/pomodoro-clock/static/js/main.934315d1.chunk.js"
   },
   {
     "revision": "d420e891230cef74bfe7",
     "url": "/pomodoro-clock/static/js/runtime-main.cd73fa2f.js"
+  },
+  {
+    "revision": "ec0573a07fe703ba2acec0e2f1ae8415",
+    "url": "/pomodoro-clock/static/media/bailey-zindel-NRQV-hBF10M-unsplash-medium.ec0573a0.jpg"
   }
 ]);
