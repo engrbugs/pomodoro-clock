@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import logo from "./logo.svg";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function SetTimer(props) {
@@ -12,7 +11,6 @@ function SetTimer(props) {
 
   function decreaseCount() {
     const MIN = 1;
-    console.log(count);
     props.update(count - 1 <= MIN ? MIN : count - 1);
   }
 
@@ -47,8 +45,7 @@ function App() {
     idi: "break-increment",
     idl: "break-length",
     count: breakCount,
-    update: (num) =>
-      isPlaying ? null : setBreakCount(num),
+    update: (num) => (isPlaying ? null : setBreakCount(num)),
   };
 
   const sessionProps = {
@@ -63,16 +60,15 @@ function App() {
   };
 
   function convertToTime(count) {
-    let minutes = Math.floor(clockCount / 60);
-    let seconds = clockCount - minutes * 60;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    return minutes + ":" + seconds;
-
-    // const minutes = Math.floor(count / 60);
-    // const seconds =
-    //   ("" + (count % 60)).length === 1 ? "0" + (count % 60) : "" + (count % 60);
-    // return `${minutes}:${seconds}`;
+    let minutes =
+      ("" + Math.floor(clockCount / 60)).length === 1
+        ? "0" + Math.floor(clockCount / 60)
+        : "" + Math.floor(clockCount / 60);
+    let seconds =
+      ("" + (clockCount % 60)).length === 1
+        ? "0" + (clockCount % 60)
+        : "" + (clockCount % 60);
+    return `${minutes}:${seconds}`;
   }
 
   function handlePlayPause() {
@@ -95,17 +91,14 @@ function App() {
       interval = setInterval(() => {
         setClockCount((clockCount) => clockCount - 1);
       }, 1000);
-    } else if (isPlaying && clockCount === -1) {
-      if (clockCount === -1) {
-        audioBeep.play();
-        setCurrentTimer("Break");
-        setClockCount((clockCount) =>
-          currentTimer === "Session" ? breakCount * 60 : sessionCount * 60
-        );
-        setCurrentTimer(currentTimer === "Session" ? "Break" : "Session");
-      }
+    } else if (isPlaying && clockCount < 0) {
+      audioBeep.play();
+      setCurrentTimer("Break");
+      setClockCount((clockCount) =>
+        currentTimer === "Session" ? breakCount * 60 : sessionCount * 60
+      );
+      setCurrentTimer(currentTimer === "Session" ? "Break" : "Session");
     }
-
     // returned function will be called on component unmount
     return () => {
       clearInterval(interval);
@@ -121,23 +114,14 @@ function App() {
 
   return (
     <div>
+      <h1>POMODO CLOCK</h1>
       <div className="flex">
         <SetTimer {...breakProps} />
         <SetTimer {...sessionProps} />
       </div>
       <div className="clock-container">
-        {/* <div id="timer-label"> */}
-          <h1 id="timer-label">
-          {currentTimer}
-          </h1>
-        {/* </div> */}
-
-        {/* <div id="time-left"> */}
-          <span id="time-left">
-          {convertToTime()}
-          </span>
-        {/* </div> */}
-
+        <h1 id="timer-label">{currentTimer}</h1>
+        <span id="time-left">{convertToTime()}</span>
         <audio
           id="beep"
           preload="auto"
@@ -147,10 +131,10 @@ function App() {
           }}
         />
         <div className="flex">
-          <button id="start_stop" onClick={handlePlayPause}>
+          <button className="button" id="start_stop" onClick={handlePlayPause}>
             <i className={`fas fa-${isPlaying ? "pause" : "play"}`} />
           </button>
-          <button id="reset" onClick={handleReset}>
+          <button className="button" id="reset" onClick={handleReset}>
             <i className="fas fa-sync" />
           </button>
         </div>
